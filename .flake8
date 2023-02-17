@@ -1,2 +1,0 @@
-[flake8]
-exclude = oc_lettings_site/migrations/*.py
