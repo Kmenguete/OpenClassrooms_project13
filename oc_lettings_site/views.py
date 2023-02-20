@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Letting, Profile
+from .models import Profile
 
 
 # Lorem ipsum dolor sit amet, consectetur
@@ -21,12 +21,6 @@ def index(request):
 # faucibus orci luctus et ultrices posuere cubilia curae; Cras eget scelerisque
 
 
-def lettings_index(request):
-    lettings_list = Letting.objects.all()
-    context = {'lettings_list': lettings_list}
-    return render(request, 'lettings_index.html', context)
-
-
 # Cras ultricies dignissim purus, vitae hendrerit ex varius non. In accumsan
 # porta nisl id eleifend. Praesent dignissim, odio eu consequat pretium,
 # purus urna vulputate arcu, vitae efficitur lacus justo nec purus.
@@ -39,13 +33,6 @@ def lettings_index(request):
 # Sed non dolor risus. Mauris condimentum auctor elementum. Donec quis nisi ligula.
 # Integer vehicula tincidunt enim, ac lacinia augue pulvinar sit amet.
 
-def letting(request, letting_id):
-    letting = Letting.objects.get(id=letting_id)
-    context = {
-        'title': letting.title,
-        'address': letting.address,
-    }
-    return render(request, 'letting.html', context)
 
 # Sed placerat quam in pulvinar commodo. Nullam laoreet
 # consectetur ex, sed consequat libero pulvinar eget. Fusc
