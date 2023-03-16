@@ -16,6 +16,11 @@ orbs:
             username: $DOCKERHUB_USERNAME
             password: $DOCKERHUB_PASSWORD
           jobs:
+            test:
+              image: ubuntu-2204:202010-01
+              run:
+                name: Run Unit Test
+                command: pytest
             publishLatestToHub:
               executor: docker-publisher
           steps:
@@ -29,6 +34,6 @@ orbs:
               docker push $IMAGE_NAME:latest
 workflows:
   version: 2
-  build-master:
-    jobs:
-      publishLatestToHub
+  jobs:
+    -pytest
+    -publishLatestToHub
