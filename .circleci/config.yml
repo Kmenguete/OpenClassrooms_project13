@@ -12,7 +12,6 @@ executors:
           password: $DOCKER_HUB_PASSWORD
   my-custom-executor2:
     machine: true
-      - image: ubuntu-2204:202010-01
 jobs:
   test:
     executor: my-custom-executor2
