@@ -28,6 +28,7 @@ jobs:
                         docker build -t $IMAGE_NAME .
                         docker push $IMAGE_NAME:latest
 workflows:
+  version: 2
   jobs:
     - test_and_linting
     - publishLatestToHub
