@@ -28,7 +28,6 @@ jobs:
                         docker build -t $IMAGE_NAME .
                         docker push $IMAGE_NAME:latest
 workflows:
-  my-custom-workflow:
-    jobs:
-      - test_and_linting
-      - publishLatestToHub
+  jobs:
+    - test_and_linting
+    - publishLatestToHub
