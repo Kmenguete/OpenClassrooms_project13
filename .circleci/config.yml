@@ -8,8 +8,8 @@ executors:
         auth:
           # ensure you have first added these secrets
           # visit app.circleci.com/settings/project/github/Kmenguete/OpenClassrooms_project13/environment-variables
-          username: $DOCKER_HUB_USER
-          password: $DOCKER_HUB_PASSWORD
+          username: $DOCKERHUB_USERNAME
+          password: $DOCKERHUB_PASSWORD
 jobs:
   test_and_linting:
     executor: my-custom-executor
