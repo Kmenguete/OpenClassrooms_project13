@@ -12,8 +12,6 @@ executors:
           password: $DOCKER_HUB_PASSWORD
   my-custom-executor2:
     machine: true
-    linux_auth:
-      password: $UBUNTU_PASSWORD
 jobs:
   test_and_linting:
     executor: my-custom-executor2
