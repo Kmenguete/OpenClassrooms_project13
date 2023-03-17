@@ -30,5 +30,9 @@ jobs:
 workflows:
   version: 2
   jobs:
-    - test_and_linting
-    - publishLatestToHub
+    build:
+      step:
+        - test_and_linting
+    build_2:
+      step_2:
+        - publishLatestToHub
