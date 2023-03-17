@@ -12,13 +12,17 @@ executors:
           password: $DOCKER_HUB_PASSWORD
   my-custom-executor2:
     machine: true
+    linux_auth:
+      password: $UBUNTU_PASSWORD
 jobs:
   test_and_linting:
     executor: my-custom-executor2
     steps:
       - checkout
       - run: |
-          pip install python3.10
+          sudo apt install python3.11
+          echo "$UBUNTU_PASSWORD" | - password-stdin
+          pip install --upgrade pip
           pip install django
           pip install flake8
           pip install pytest
