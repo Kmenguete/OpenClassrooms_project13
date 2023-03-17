@@ -4,7 +4,7 @@ version: 2.1
 executors:
   my-custom-executor:
     docker:
-      - image: circleci/django:latest
+      - image: kevin976/circleci:latest
         auth:
           # ensure you have first added these secrets
           # visit app.circleci.com/settings/project/github/Kmenguete/OpenClassrooms_project13/environment-variables
