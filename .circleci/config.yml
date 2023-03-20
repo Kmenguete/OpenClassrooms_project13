@@ -2,7 +2,7 @@
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
 orbs:
-  python: circleci/python@3.10
+  python: circleci/python@2.1.1
 my-custom-executor:
     docker:
       - image: kevin976/circleci:latest
