@@ -31,6 +31,6 @@ jobs:
 workflows:
   version 2:
   my_custom_workflow:
-  jobs:
-    - test_and_linting
-    - publishLatestToHub
+    jobs:
+      - test_and_linting
+      - publishLatestToHub
