@@ -3,14 +3,14 @@
 version: 2.1
 orbs:
   python: circleci/python@2.1.1
-my-custom-executor:
-    docker:
-      - image: kevin976/circleci:latest
-        auth:
-          # ensure you have first added these secrets
-          # visit app.circleci.com/settings/project/github/Kmenguete/OpenClassrooms_project13/environment-variables
-          username: $DOCKERHUB_USERNAME
-          password: $DOCKERHUB_PASSWORD
+  my-custom-executor:
+      docker:
+        - image: kevin976/circleci:latest
+          auth:
+            # ensure you have first added these secrets
+            # visit app.circleci.com/settings/project/github/Kmenguete/OpenClassrooms_project13/environment-variables
+            username: $DOCKERHUB_USERNAME
+            password: $DOCKERHUB_PASSWORD
 
 jobs:
   test_and_linting:
