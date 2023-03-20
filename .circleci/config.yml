@@ -16,18 +16,18 @@ jobs:
     steps:
       - checkout
       - run: |
+          docker build -t $IMAGE_NAME .
           flake8
           pytest
   publishLatestToHub:
     executor: my-custom-executor
     steps:
       - checkout
-      - run: |
-          |
-                        echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" - password-stdin
-                        docker build -t $IMAGE_NAME .
-                        docker push $IMAGE_NAME:latest
+      - run: | 
+          docker build -t $IMAGE_NAME .
+          docker push $IMAGE_NAME:latest
 workflows:
   version: 2
-  job_1: test_and_linting
-  job_2: publishLatestToHub
+  jobs:
+    - test_and_linting
+    - publishLatestToHub
