@@ -3,7 +3,7 @@
 version: 2.1
 orbs:
   python: circleci/python@2.1.1
-  my_custom_executor:
+  my-custom-executor:
       docker:
         - image: kevin976/circleci:latest
           auth:
@@ -14,7 +14,7 @@ orbs:
 
 jobs:
   test_and_linting:
-    executor: my_custom_executor
+    executor: my-custom-executor
     steps:
       - checkout
       - run: |
@@ -22,7 +22,7 @@ jobs:
           flake8
           pytest
   publishLatestToHub:
-    executor: my_custom_executor
+    executor: my-custom-executor
     steps:
       - checkout
       - run: | 
