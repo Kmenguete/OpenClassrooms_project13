@@ -29,6 +29,5 @@ jobs:
                         docker push $IMAGE_NAME:latest
 workflows:
   version: 2
-  jobs:
-    - test_and_linting
-    - publishLatestToHub
+  job_1: test_and_linting
+  job_2: publishLatestToHub
