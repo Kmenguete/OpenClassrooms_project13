@@ -4,34 +4,34 @@ version: 2.1
 orbs:
   python: circleci/python@2.1.1
 
-  jobs:
-    test_and_linting:
-      docker:
-        - image: kevin976/circleci:latest
-          auth:
-            # ensure you have first added these secrets
-            # visit app.circleci.com/settings/project/github/Kmenguete/OpenClassrooms_project13/environment-variables
-            username: $DOCKERHUB_USERNAME
-            password: $DOCKERHUB_PASSWORD
-      steps:
-        - checkout
-        - run: |
-            docker build -t $IMAGE_NAME .
-            flake8
-            pytest
-    publishLatestToHub:
-      docker:
-        - image: kevin976/circleci:latest
-          auth:
-            # ensure you have first added these secrets
-            # visit app.circleci.com/settings/project/github/Kmenguete/OpenClassrooms_project13/environment-variables
-            username: $DOCKERHUB_USERNAME
-            password: $DOCKERHUB_PASSWORD
-      steps:
-        - checkout
-        - run: | 
-            docker build -t $IMAGE_NAME .
-            docker push $IMAGE_NAME:latest
+jobs:
+  test_and_linting:
+    docker:
+      - image: kevin976/circleci:latest
+        auth:
+          # ensure you have first added these secrets
+          # visit app.circleci.com/settings/project/github/Kmenguete/OpenClassrooms_project13/environment-variables
+          username: $DOCKERHUB_USERNAME
+          password: $DOCKERHUB_PASSWORD
+    steps:
+      - checkout
+      - run: |
+          docker build -t $IMAGE_NAME .
+          flake8
+          pytest
+  publishLatestToHub:
+    docker:
+      - image: kevin976/circleci:latest
+        auth:
+          # ensure you have first added these secrets
+          # visit app.circleci.com/settings/project/github/Kmenguete/OpenClassrooms_project13/environment-variables
+          username: $DOCKERHUB_USERNAME
+          password: $DOCKERHUB_PASSWORD
+    steps:
+      - checkout
+      - run: | 
+          docker build -t $IMAGE_NAME .
+          docker push $IMAGE_NAME:latest
 
 workflows:
   version 2:
