@@ -21,10 +21,12 @@ jobs:
           password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
-      - run: |
-          docker build -t $IMAGE_NAME .
-          flake8
-          pytest
+      - run:
+          name: build docker image and run test and linting
+          command: |
+            docker build -t $IMAGE_NAME .
+            flake8
+            pytest
   publishLatestToHub:
     docker:
       - image: kevin976/circleci:latest
@@ -35,9 +37,11 @@ jobs:
           password: $DOCKERHUB_PASSWORD
     steps:
       - checkout
-      - run: | 
-          docker build -t $IMAGE_NAME .
-          docker push $IMAGE_NAME:latest
+      - run:
+          name: build docker image and push it to docker hub
+          command: | 
+            docker build -t $IMAGE_NAME .
+            docker push $IMAGE_NAME:latest
 
 workflows:
   version 2:
