@@ -24,6 +24,7 @@ jobs:
       - run:
           name: build docker image and run test and linting
           command: |
+            echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" — password-stdin
             docker build -t $IMAGE_NAME .
             flake8
             pytest
@@ -39,7 +40,8 @@ jobs:
       - checkout
       - run:
           name: build docker image and push it to docker hub
-          command: | 
+          command: |
+            echo "$DOCKERHUB_PASSWORD" | docker login -u "$DOCKERHUB_USERNAME" — password-stdin
             docker build -t $IMAGE_NAME .
             docker push $IMAGE_NAME:latest
 
