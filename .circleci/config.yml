@@ -12,6 +12,7 @@ on :
 
 jobs:
   test_and_linting:
+    working_directory: /OpenClassrooms_project13
     docker:
       - image: cimg/python:3.10.6
         auth:
@@ -20,14 +21,18 @@ jobs:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD
     steps:
+      - setup_remote_docker:
+            version: 20.10.18
+            docker_layer_caching: true
       - checkout
       - run:
           name: build docker image and run test and linting
           command: |
-            docker build -t $IMAGE_NAME kevin976/circleci
+            docker build -t $IMAGE_NAME:latest .
             flake8
             pytest
   publishLatestToHub:
+    working_directory: /OpenClassrooms_project13
     docker:
       - image: cimg/python:3.10.6
         auth:
@@ -36,11 +41,14 @@ jobs:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD
     steps:
+      - setup_remote_docker:
+            version: 20.10.18
+            docker_layer_caching: true
       - checkout
       - run:
           name: build docker image and push it to docker hub
           command: |
-            docker build -t $IMAGE_NAME kevin976/circleci
+            docker build -t $IMAGE_NAME:latest .
             docker push $IMAGE_NAME:latest
 
 workflows:
