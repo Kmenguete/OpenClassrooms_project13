@@ -12,7 +12,6 @@ on :
 
 jobs:
   test_and_linting:
-    working_directory: /OpenClassrooms_project13
     docker:
       - image: cimg/python:3.10.6
         auth:
@@ -32,7 +31,6 @@ jobs:
             flake8
             pytest
   publishLatestToHub:
-    working_directory: /OpenClassrooms_project13
     docker:
       - image: cimg/python:3.10.6
         auth:
