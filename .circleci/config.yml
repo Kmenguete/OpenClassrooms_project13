@@ -7,18 +7,24 @@ orbs:
 
 jobs:
   test_and_linting:
-    machine: 
-      image: ubuntu-2204:2023.02.1
+    docker:
+      - image: cimg/python:3.10.6
     steps:
       - checkout
       - run:
-          name: Run test and linting
+          name: create venv and install dependencies
           command: |
-            python -m venv /home/tommy/Bureau/Python_developer_learning/OpenClassrooms_project13/myvenv
-            source myvenv/bin/activate
+            python3 -m venv venv
+            .venv/bin/activate
             pip install -r requirements.txt
-            flake8
-            pytest
+      - python/install-packages:
+          pkg-manager: pip
+      - run:
+          name: Run tests
+          command: pytest
+      - run:
+          name: Run flake8
+          command: flake8
   publishLatestToHub:
     docker:
       - image: cimg/python:3.10.6
