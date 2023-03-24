@@ -14,8 +14,8 @@ jobs:
       - run:
           name: create venv and install dependencies
           command: |
-            python3 -m venv venv
-            .myvenv/bin/activate
+            python -m venv myvenv
+            source myvenv/bin/activate
             pip install -r requirements.txt
       - python/install-packages:
           pkg-manager: pip
@@ -24,7 +24,7 @@ jobs:
           command: pytest
       - run:
           name: Run flake8
-          command: flake8
+          command: flake8 --exclude myvenv
   publishLatestToHub:
     docker:
       - image: cimg/python:3.10.6
