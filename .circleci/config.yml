@@ -22,7 +22,7 @@ jobs:
       - run:
           name: build docker image and run test and linting
           command: |
-            docker build -t kevin976/circleci ../Dockerfile
+            docker build -t kevin976/circleci .
             flake8
             pytest
   publishLatestToHub:
@@ -41,7 +41,7 @@ jobs:
       - run:
           name: build docker image and push it to docker hub
           command: |
-            docker build -t kevin976/circleci ../Dockerfile
+            docker build -t kevin976/circleci .
             docker push kevin976/circleci:latest
 
 workflows:
