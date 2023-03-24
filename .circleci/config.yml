@@ -24,7 +24,7 @@ jobs:
           command: pytest
       - run:
           name: Run flake8
-          command: flake8 --exclude myvenv, lettings/migrations, oc_lettings_site/migrations, profiles/migrations
+          command: flake8 --exclude myvenv,lettings/migrations,oc_lettings_site/migrations,profiles/migrations
   publishLatestToHub:
     docker:
       - image: cimg/python:3.10.6
