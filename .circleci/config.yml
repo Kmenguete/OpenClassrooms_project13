@@ -7,7 +7,7 @@ orbs:
 
 jobs:
   test_and_linting:
-    machine:
+    machine: true
       - image: ubuntu-2204:202010-01
     steps:
       - checkout
