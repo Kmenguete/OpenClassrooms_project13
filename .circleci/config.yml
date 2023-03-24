@@ -22,7 +22,7 @@ jobs:
       - run:
           name: build docker image and run test and linting
           command: |
-            docker build -t $IMAGE_NAME ..
+            docker build -t kevin976/circleci ..
             flake8
             pytest
   publishLatestToHub:
@@ -41,8 +41,8 @@ jobs:
       - run:
           name: build docker image and push it to docker hub
           command: |
-            docker build -t $IMAGE_NAME ..
-            docker push $IMAGE_NAME:latest
+            docker build -t kevin976/circleci ..
+            docker push kevin976/circleci:latest
 
 workflows:
   my_custom_workflow:
@@ -50,8 +50,6 @@ workflows:
       - test_and_linting:
           context:
             -Docker login
-            -Docker Hub repository
       - publishLatestToHub:
           context:
             -Docker login
-            -Docker Hub repository
