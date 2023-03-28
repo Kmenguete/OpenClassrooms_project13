@@ -52,7 +52,6 @@ workflows:
       - publishLatestToHub:
           requires:
             - test_and_linting
-          filters:
-            branches:
-              only:
-                -master
+          branches:
+            only:
+              -master
