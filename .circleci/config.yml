@@ -44,6 +44,7 @@ jobs:
           command: |
             docker build -t $CIRCLE_SHA1 .
             docker login -u "$DOCKERHUB_USERNAME" -p "$DOCKERHUB_PASSWORD" docker.io
+            docker tag $CIRCLE_SHA1 kevin976/circleci:$CIRCLE_SHA1
             docker push kevin976/circleci:$CIRCLE_SHA1
 
 workflows:
