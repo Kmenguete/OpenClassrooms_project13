@@ -54,5 +54,4 @@ workflows:
             - test_and_linting
           filters:
             branches:
-              only:
-                -master
+              only: master
