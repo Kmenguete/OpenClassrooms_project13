@@ -63,8 +63,6 @@ jobs:
           command: |
             git config --global user.email "menguetekevin@gmail.com"
             git config --global user.name "Kevin Menguete"
-            git add heroku.yml
-            git commit -m "adding heroku.yml"
             heroku stack: set container
             git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
       
