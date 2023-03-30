@@ -55,6 +55,9 @@ jobs:
           username: $DOCKERHUB_USERNAME
           password: $DOCKERHUB_PASSWORD
     steps:
+      - setup_remote_docker:
+            version: 20.10.18
+            docker_layer_caching: true
       - checkout
       - run:
           name: Deploy Docker image to Heroku
