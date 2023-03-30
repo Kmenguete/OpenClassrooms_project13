@@ -62,10 +62,7 @@ jobs:
       - run:
           name: Deploy Docker image to Heroku
           command: |
-            sudo curl https://cli-assets.heroku.com/install.sh | sh
-            HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:login
-            HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:push -a openclassroomsproject13 web
-            HEROKU_API_KEY=${HEROKU_API_KEY} heroku container:release -a openclassroomsproject13 web
+            git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git master
       
 
 workflows:
