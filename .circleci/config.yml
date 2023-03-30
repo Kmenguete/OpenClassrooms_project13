@@ -3,7 +3,7 @@
 # I was required to create my docker image kevin976/circleci locally.
 version: 2.1
 orbs:
-  python: circleci/python@2.1.1
+  heroku: circleci/heroku@2.0.0
 
 
 jobs:
@@ -46,6 +46,24 @@ jobs:
             docker login -u "$DOCKERHUB_USERNAME" -p "$DOCKERHUB_PASSWORD" docker.io
             docker tag $CIRCLE_SHA1 kevin976/circleci:$CIRCLE_SHA1
             docker push kevin976/circleci:$CIRCLE_SHA1
+  deploy:
+    docker:
+      - image: cimg/python:3.10.6
+        auth:
+          # ensure you have first added these secrets
+          # visit app.circleci.com/settings/project/github/Kmenguete/OpenClassrooms_project13/environment-variables
+          username: $DOCKERHUB_USERNAME
+          password: $DOCKERHUB_PASSWORD
+    steps:
+      - checkout
+      - run:
+          name: Deploy Docker image to Heroku
+          command: |
+            sudo curl https://cli-assets.heroku.com/install.sh | sh
+            $HEROKU_API_KEY heroku container:login
+            $HEROKU_API_KEY heroku container:push -a openclassroomsproject13 web
+            $HEROKU_API_KEY heroku container:release -a openclassroomsproject13 web
+      
 
 workflows:
   my_custom_workflow:
@@ -54,6 +72,12 @@ workflows:
       - publishLatestToHub:
           requires:
             - test_and_linting
+          filters:
+            branches:
+              only: master
+      - deploy:
+          requires:
+            - publishLatestToHub
           filters:
             branches:
               only: master
