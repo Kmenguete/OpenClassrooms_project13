@@ -1,1 +1,1 @@
-web: gunicorn OpenClassrooms_project13.wsgi
+web: gunicorn oc_lettings_site.wsgi:application
