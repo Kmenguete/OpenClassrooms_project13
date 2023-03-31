@@ -1,1 +1,1 @@
-web: gunicorn --bind :8000 --workers 3 oc_lettings_site.wsgi:application
+web gunicorn OpenClassrooms_project13.wsgi:application --log-file -
