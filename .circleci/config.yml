@@ -61,12 +61,12 @@ jobs:
       - run:
           name: Deploy Docker image to Heroku
           command: |
-            sudo curl https://cli-assets.heroku.com/install.sh | sh
-            docker build -t registry.heroku.com/openclassroomsproject13/web .
             echo "${HEROKU_API_KEY}" | docker login --username=_ --password-stdin registry.heroku.com
-            docker push registry.heroku.com/openclassroomsproject13/web
+            sudo curl https://cli-assets.heroku.com/install.sh | sh
+            heroku container:push web -a=openclassroomsproject13 
+            heroku config:add ALLOWED_HOSTS=* -a openclassroomsproject13 
+            heroku config:get ALLOWED_HOSTS -a openclassroomsproject13  
             heroku container:release web --app openclassroomsproject13 
-            heroku ps:scale web=1 --app openclassroomsproject13 
       
 
 workflows:
