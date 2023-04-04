@@ -64,8 +64,6 @@ jobs:
             echo "${HEROKU_API_KEY}" | docker login --username=_ --password-stdin registry.heroku.com
             sudo curl https://cli-assets.heroku.com/install.sh | sh
             heroku container:push web -a=openclassroomsproject13 
-            heroku config:add ALLOWED_HOSTS=* -a openclassroomsproject13 
-            heroku config:get ALLOWED_HOSTS -a openclassroomsproject13  
             heroku container:release web --app openclassroomsproject13 
       
 
