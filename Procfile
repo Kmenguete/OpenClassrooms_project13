@@ -1,1 +1,0 @@
-web gunicorn OpenClassrooms_project13.wsgi:application --log-file -
