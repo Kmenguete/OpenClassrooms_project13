@@ -63,9 +63,9 @@ jobs:
           command: |
             echo "${HEROKU_API_KEY}" | docker login --username=_ --password-stdin registry.heroku.com
             sudo curl https://cli-assets.heroku.com/install.sh | sh
-            heroku container:push web -a=openclassroomsproject13 
-            heroku container:release web --app openclassroomsproject13 
-            heroku ps:scale web=1 --app openclassroomsproject13
+            heroku container:push web -a=openclassrooms-project13 
+            heroku container:release web --app openclassrooms-project13 
+            heroku ps:scale web=1 --app openclassrooms-project13
       
 
 workflows:
