@@ -36,12 +36,11 @@ jobs:
     steps:
       - setup_remote_docker:
             version: 20.10.18
-            docker_layer_caching: true
       - checkout
       - run:
           name: build docker image and push it to docker hub
           command: |
-            docker build -t $CIRCLE_SHA1 .
+            docker build -t $CIRCLE_SHA1 --no-cache .
             docker login -u "$DOCKERHUB_USERNAME" -p "$DOCKERHUB_PASSWORD" docker.io
             docker tag $CIRCLE_SHA1 kevin976/circleci:$CIRCLE_SHA1
             docker push kevin976/circleci:$CIRCLE_SHA1
@@ -56,7 +55,6 @@ jobs:
     steps:
       - setup_remote_docker:
             version: 20.10.18
-            docker_layer_caching: true
       - checkout
       - run:
           name: Deploy Docker image to Heroku
