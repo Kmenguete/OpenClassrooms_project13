@@ -121,4 +121,4 @@ STATICFILES_FINDERS = [
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-CSRF_TRUSTED_ORIGINS = ['https://openclassrooms-project13.herokuapp.com/', 'https://127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://openclassrooms-project13.herokuapp.com', 'https://127.0.0.1']
