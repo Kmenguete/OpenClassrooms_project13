@@ -61,10 +61,18 @@ jobs:
           command: |
             echo "${HEROKU_API_KEY}" | docker login --username=_ --password-stdin registry.heroku.com
             sudo curl https://cli-assets.heroku.com/install.sh | sh
-            heroku create
-            heroku container:push web -a=openclassrooms-project13 
-            heroku container:release web --app openclassrooms-project13 
-            heroku ps:scale web=1 --app openclassrooms-project13
+            my_apps=$(heroku apps)
+            existing_app=0
+            for app in $my_apps; 
+              do if [ $app = "$HEROKU_APP_NAME" ]; 
+                then existing_app=1; 
+              fi done
+            if [ $existing_app = 0 ];
+              then heroku create --app ${HEROKU_APP_NAME};
+            fi
+            heroku container:push web --app ${HEROKU_APP_NAME}
+            heroku container:release web --app ${HEROKU_APP_NAME}
+            heroku ps:scale web=1 --app ${HEROKU_APP_NAME}
       
 
 workflows:
