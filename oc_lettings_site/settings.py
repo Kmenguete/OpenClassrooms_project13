@@ -121,4 +121,4 @@ STATICFILES_FINDERS = [
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
-CSRF_TRUSTED_ORIGINS = ['*']
+CSRF_TRUSTED_ORIGINS = ['https://mynewapps7896.herokuapp.com', 'https://.127.0.0.1']
