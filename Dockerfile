@@ -10,5 +10,5 @@ RUN pip install -r requirements.txt
 # copy all items in current local directory(source) to current container directory(destination)
 COPY . .
 # command to run when image is executed inside a container
-CMD ["python", "manage.py", "collectstatic", "--noinput"]
+CMD python manage.py collectstatic
 CMD gunicorn oc_lettings_site.wsgi:application --bind 0.0.0.0:$PORT
