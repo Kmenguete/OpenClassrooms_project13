@@ -9,8 +9,6 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 # copy all items in current local directory(source) to current container directory(destination)
 COPY . .
-# This command release port 8000 within the container, where the Django app will run
-EXPOSE 8000
 # command to run when image is executed inside a container
 CMD ["python", "manage.py", "collectstatic", "--noinput"]
-CMD ["gunicorn", "--bind", ":8000", "--workers", "3", "oc_lettings_site.wsgi:application"]
+CMD gunicorn oc_lettings_site.wsgi:application --bind 0.0.0.0:$PORT
