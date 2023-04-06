@@ -1,6 +1,6 @@
 import os
-import environ
 
+from environ import environ
 
 # Initialise environment variables
 env = environ.Env()
