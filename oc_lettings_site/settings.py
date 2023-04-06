@@ -1,5 +1,4 @@
 import os
-
 import environ
 
 # Initialise environment variables
@@ -34,7 +33,6 @@ INSTALLED_APPS = [
     'lettings',
     'profiles',
     'gunicorn',
-    'environ',
 ]
 
 MIDDLEWARE = [
