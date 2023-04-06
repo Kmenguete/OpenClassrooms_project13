@@ -1,6 +1,6 @@
 import os
 
-from environ import environ
+import environ
 
 # Initialise environment variables
 env = environ.Env()
@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'lettings',
     'profiles',
     'gunicorn',
+    'environ',
 ]
 
 MIDDLEWARE = [
