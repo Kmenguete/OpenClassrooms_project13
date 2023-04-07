@@ -11,7 +11,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG')
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -69,7 +69,7 @@ WSGI_APPLICATION = 'oc_lettings_site.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, os.environ.get('DATABASE_NAME')),
+        'NAME': os.path.join(BASE_DIR, 'oc-lettings-site.sqlite3'),
     }
 }
 

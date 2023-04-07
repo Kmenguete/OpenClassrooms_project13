@@ -40,7 +40,7 @@ jobs:
       - run:
           name: build docker image and push it to docker hub
           command: |
-            docker build -t $CIRCLE_SHA1 --build-arg SECRET_KEY=${SECRET_KEY} --build-arg DEBUG=${DEBUG} --build-arg DATABASE_NAME=${DATABASE_NAME} .
+            docker build -t $CIRCLE_SHA1 --build-arg SECRET_KEY=${SECRET_KEY} .
             docker login -u "$DOCKERHUB_USERNAME" -p "$DOCKERHUB_PASSWORD" docker.io
             docker tag $CIRCLE_SHA1 kevin976/circleci:$CIRCLE_SHA1
             docker push kevin976/circleci:$CIRCLE_SHA1
