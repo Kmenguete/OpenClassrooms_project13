@@ -3,7 +3,7 @@ from django.urls import path, include
 import oc_lettings_site.views
 
 
-def trigger_error():
+def trigger_error(request):
     division_by_zero = 1 / 0
     return division_by_zero
 
