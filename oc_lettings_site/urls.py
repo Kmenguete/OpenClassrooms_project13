@@ -3,7 +3,13 @@ from django.urls import path, include
 import oc_lettings_site.views
 
 
+def trigger_error(request):
+    division_by_zero = 1 / 0
+    return division_by_zero, request
+
+
 urlpatterns = [
+    path('sentry-debug/', trigger_error),
     path('', oc_lettings_site.views.index, name='index'),
     path('profiles/', include(('profiles.urls', 'profiles'), namespace='profiles')),
     path('profiles/', include(('profiles.urls', 'profiles'), namespace='profile')),
