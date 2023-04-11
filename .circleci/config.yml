@@ -79,7 +79,7 @@ jobs:
           command: |
             curl -sL https://sentry.io/get-cli/ | SENTRY_CLI_VERSION="2.2.0" bash
             SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN}
-            SENTRY_ORG=openclassrooms-project13
+            SENTRY_ORG=openclassrooms-project13 --org
             SENTRY_PROJECT=python-django
             VERSION=${HEROKU_APP_NAME}
             sentry-cli releases new "$VERSION"
