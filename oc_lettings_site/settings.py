@@ -161,7 +161,7 @@ DEBUG_PROPAGATE_EXCEPTIONS = True
 COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 
 sentry_sdk.init(
-    dsn="https://252390646ab04d69916a4f51e5ed5ec9@o4504988707061760.ingest.sentry.io/4504994604974080",
+    dsn=os.environ.get('SENTRY_DSN'),
     integrations=[
         DjangoIntegration(),
     ],

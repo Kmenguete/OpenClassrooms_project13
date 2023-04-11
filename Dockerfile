@@ -4,8 +4,10 @@ FROM python:3.10
 ENV PYTHONBUFFERED=1
 
 # set environment variables
+ARG SENTRY_DSN
 ARG SECRET_KEY
 ENV SECRET_KEY=$SECRET_KEY
+ENV SENTRY_DSN=$SENTRY_DSN
 
 #set working directory
 WORKDIR /OpenClassrooms_project13
