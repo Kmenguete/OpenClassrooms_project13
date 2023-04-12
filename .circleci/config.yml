@@ -82,9 +82,9 @@ jobs:
             SENTRY_ORG=openclassrooms-project13
             SENTRY_PROJECT=python-django
             VERSION=${HEROKU_APP_NAME}
-            sentry-cli releases new "$VERSION"
-            sentry-cli releases set-commits "$VERSION" --auto
-            sentry-cli releases finalize "$VERSION"
+            sentry-cli --org "$SENTRY_ORG" releases new "$VERSION"
+            sentry-cli --org "$SENTRY_ORG" releases set-commits "$VERSION" --auto
+            sentry-cli --org "$SENTRY_ORG" releases finalize "$VERSION"
       
 
 workflows:
