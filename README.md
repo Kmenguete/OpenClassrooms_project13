@@ -75,3 +75,78 @@ Utilisation de PowerShell, comme ci-dessus sauf :
 
 - Pour activer l'environnement virtuel, `.\venv\Scripts\Activate.ps1` 
 - Remplacer `which <my-command>` par `(Get-Command <my-command>).Path`
+
+
+### Déploiement
+Le site de Orange County Lettings a été déployé sur Heroku. Pour 
+déployer le site, nous avons mis en place un pipeline CI/CD avec 
+CircleCI. Ainsi, nous avons récupéré le repository de GitHub depuis
+CircleCI. Quand nous avons récupéré notre repository, un dossier .circleci
+ainsi qu'un fichier config.yml a été automatiquement créée. Nous avons
+ensuite récupéré le dossier .circleci et son fichier config.yml en local.
+Ensuite, c'est dans ce fichier config.yml que nous avons écrit nos instructions
+pour le déploiement du site sur Heroku.
+
+Pour déployer le site sur Heroku, nous avons dans un premier temps
+lancer les tests et le linting pour nous assurer que notre code 
+fonctionne en local. Ensuite, nous avons conteneurisé notre site 
+avec Docker et on a pushé notre conteneur sur DockerHub. Et enfin,
+une fois que la conteneurisation a réussi, c'est la que nous avons
+procédé au déploiement de notre application(conteneurisé) sur Heroku.
+Et pour finir, nous utilisons Sentry pour automatiquement détecter 
+des éventuelles bugs et erreurs dans le site.
+
+
+Pour pouvoir effectuer le déploiement les packages suivants doivent
+être installé:
+
+- Django 4.1.7
+- flake8 6.0.0
+- pytest-django 4.5.2
+- pytest 7.2.1
+- gunicorn 20.1.0
+- whitenoise 6.4.0
+- sentry-sdk 1.19.1
+
+Si vous souhaitez d'abord tester le site en local avant de procéder
+au déploiement assurez-vous d'avoir crééé un environnment virtuel
+avec la commande `python -m venv venv` et ensuite activez 
+l'environnement virtuel avec la commande `source venv/bin/activate`.
+
+Une fois que vous aurez la certitude que le site fonctionne correctement
+en local, vous pourrez procéder à la conteneurisation. 
+
+Toutes les étapes du déploiement s'effectueront via le fichier config.yml
+du dossier .circleci. Le fichier config.yml se composera de 3 jobs:
+
+- test_and_linting
+- publishLatestToHub
+- deploy
+
+Dans le job test_and_linting, vous devrez éxécuter pytest et flake8
+afin de vous assurer qu'il n'y a pas d'erreurs dans le code et que 
+la PEP8 est respectée.
+
+Dans publishLatestToHub, vous devrez créer un fichier Dockerfile dans 
+la racine du projet. Ce Dockerfile devra se composer du dossier racine
+de votre projet: `WORKDIR /<le_nom_de_votre_projet>`, le requirements.txt:
+`COPY requirements.txt .`, l'installation de celui-ci: `RUN pip install -r requirements.txt` et
+la récupération de tout les dossiers et fichiers du projet: `COPY . .`. Afin que le CSS
+S'affiche correctement sur Docker, vous devrez également collecter 
+les fichiers statiques en éxécutant la commande suivante: `CMD python manage.py collectstatic`.
+Et enfin pour terminer, éxécutez l'application avec gunicorn: `CMD gunicorn oc_lettings_site.wsgi:application --bind 0.0.0.0:$PORT`.
+Toute les commandes que je viens d'énumérer devront figurer sur le 
+Dockerfile.
+
+Que ça soit dans circleci, dans Dockerfile ou dans le code source,
+pensez également à créer des variables d'environnement pour 
+protéger vos données sensibles(la secret key de Django par exemple).
+
+Dans circleci, vous devrez construire votre image Docker, vous authentifier
+sur DockerHub et pusher votre image dans DockerHub.
+
+Et enfin, dans la dernière étape, le déploiement(deploy), authentifiez-vous
+sur Heroku et pusher votre image Docker sur Heroku.
+
+Dans ce projet, nous avons travaillez avec Heroku mais vous allez 
+peut-être faire le choix de travailler avec un autre hébergeur.
