@@ -82,9 +82,9 @@ jobs:
             SENTRY_ORG=openclassrooms-project13
             SENTRY_PROJECT=python-django
             VERSION=$CIRCLE_SHA1
-            sentry-cli releases new --org "$SENTRY_ORG" -p "$SENTRY_PROJECT" "$VERSION"  
-            sentry-cli releases set-commits --org "$SENTRY_ORG" -p "$SENTRY_PROJECT" "$VERSION" --auto  
-            sentry-cli releases finalize --org "$SENTRY_ORG" -p "$SENTRY_PROJECT" "$VERSION"  
+            sentry-cli releases new --org "$SENTRY_ORG" -p "$SENTRY_PROJECT" "$VERSION" --auth-token "$SENTRY_AUTH_TOKEN"  
+            sentry-cli releases set-commits --org "$SENTRY_ORG" -p "$SENTRY_PROJECT" "$VERSION" --auth-token "$SENTRY_AUTH_TOKEN" --auto  
+            sentry-cli releases finalize --org "$SENTRY_ORG" -p "$SENTRY_PROJECT" "$VERSION" --auth-token "$SENTRY_AUTH_TOKEN"  
       
 
 workflows:
