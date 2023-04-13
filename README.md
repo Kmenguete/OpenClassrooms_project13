@@ -148,5 +148,13 @@ sur DockerHub et pusher votre image dans DockerHub.
 Et enfin, dans la dernière étape, le déploiement(deploy), authentifiez-vous
 sur Heroku et pusher votre image Docker sur Heroku.
 
+Notre Workflow est configuré de la façon suivante:
+- Le test et le linting s'effectue sur toutes les branches.
+- Si le test et le linting est réussi, la conteneurisation pourra se
+faire mais elle ne se fera que sur la branche master.
+- Si la conteneurisation est réussi, le déploiement sur Heroku 
+pourra se faire. Le déploiement ne peut se faire que sur la branche 
+master.
+
 Dans ce projet, nous avons travaillez avec Heroku mais vous allez 
 peut-être faire le choix de travailler avec un autre hébergeur.
