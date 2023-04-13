@@ -152,7 +152,7 @@ Notre Workflow est configuré de la façon suivante:
 - Les tests et le linting s'effectuent sur toutes les branches.
 - Si les tests et le linting sont réussis, la conteneurisation pourra se
 faire mais elle ne se fera que sur la branche master.
-- Si la conteneurisation est réussi, le déploiement sur Heroku 
+- Si la conteneurisation est réussie, le déploiement sur Heroku 
 pourra se faire. Le déploiement ne peut se faire que sur la branche 
 master.
 
